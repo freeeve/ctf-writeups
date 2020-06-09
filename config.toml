@@ -1,4 +1,4 @@
-baseURL = "https://example.com"
+baseURL = "https://freeeve.github.io/ctf-writeups/"
 languageCode = "en-us"
 publishDir = "docs"
 defaultContentLanguage = "en"

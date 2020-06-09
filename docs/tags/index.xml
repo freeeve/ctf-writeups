@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Eve&#39;s CTF Writeups</title>
+    <link>https://example.com/tags/</link>
+    <description>Recent content in Tags on Eve&#39;s CTF Writeups</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Mon, 08 Jun 2020 23:25:58 -0400</lastBuildDate>
+    
+	<atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>web</title>
+      <link>https://example.com/tags/web/</link>
+      <pubDate>Mon, 08 Jun 2020 23:25:58 -0400</pubDate>
+      
+      <guid>https://example.com/tags/web/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

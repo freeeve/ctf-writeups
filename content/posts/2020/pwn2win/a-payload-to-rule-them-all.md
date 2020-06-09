@@ -170,4 +170,4 @@ table cartesian product ;) --the result was something like this:
 <!--' union select password, 1, 1, 1 from users limit 1;#-->
 ```
 
-Note: it needs to be all one one line, but I broke it up for visibility.
+Note: it needs to be all on one line, but I broke it up for visibility.

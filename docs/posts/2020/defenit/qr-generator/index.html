@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Defenit: QR Generator">
+<meta itemprop="description" content="When you first connect to the server, it asks you for a name, and then starts spitting out ones and zeros in a grid format, and gives you a prompt &gt;&gt; but times out pretty quickly. I decided to take a chance and assume they wanted the QR code output. Here&rsquo;s what the service spit out, after the name prompt and some comments about levels:
+&lt; QR &gt; 1 1 1 1 1 1 1 0 1 0 1 0 1 0 0 0 0 1 0 0 1 0 1 1 1 1 1 1 1 1 0 0 0 0 0 1 0 1 0 0 1 1 0 0 0 1 0 0 0 1 0 1 0 0 0 0 0 1 1 0 1 1 1 0 1 0 0 1 1 1 1 1 0 1 0 0 0 1 0 0 1 0 1 1 1 0 1 1 0 1 1 1 0 1 0 0 0 1 1 1 0 1 0 0 0 0 1 1 0 1 0 1 1 1 0 1 1 0 1 1 1 0 1 0 1 0 0 0 0 1 0 0 0 1 1 1 0 0 1 0 1 1 1 0 1 1 0 0 0 0 0 1 0 1 0 0 1 0 1 0 1 0 0 0 0 0 0 1 0 0 0 0 0 1 1 1 1 1 1 1 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 0 1 1 0 1 1 0 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 1 0 0 0 0 1 1 1 0 1 1 0 1 0 0 1 0 1 1 0 0 1 1 1 1 0 1 0 0 0 1 0 1 0 0 0 1 1 0 1 1 0 0 1 1 0 1 1 1 0 0 0 1 1 1 0 0 0 1 0 0 1 0 1 1 0 1 0 1 0 1 1 0 0 1 0 0 1 1 0 0 0 0 1 1 0 1 0 0 1 0 1 1 0 0 0 0 1 0 1 1 0 0 0 0 1 0 1 1 0 1 0 0 0 0 1 1 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0 0 1 1 1 0 0 1 0 1 1 1 1 0 0 1 0 1 1 1 1 0 0 1 0 1 1 1 1 1 1 0 0 1 1 0 1 1 1 0 0 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0 1 0 1 1 1 0 0 0 1 0 1 0 0 1 1 1 0 0 1 0 1 1 1 0 0 0 1 0 1 1 0 1 0 0 0 1 1 1 1 0 1 1 1 0 1 1 1 1 0 0 1 0 1 0 1 0 1 0 0 0 1 1 0 0 0 1 0 1 1 1 1 0 0 1 0 1 0 1 1 1 1 1 1 0 0 1 0 0 0 1 1 0 0 1 0 0 1 1 0 1 0 1 0 0 1 0 0 0 0 0 1 0 0 1 1 0 0 1 0 0 0 1 0 1 1 1 0 1 1 0 0 1 1 1 0 1 1 0 1 1 1 0 0 1 0 1 1 1 1 0 0 1 0 1 0 0 1 0 1 0 1 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 0 1 1 1 1 0 1 0 1 0 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 0 0 0 1 1 0 1 0 1 1 0 1 0 1 0 1 1 0 1 0 0 0 0 0 1 0 1 1 1 1 0 1 1 1 1 1 0 0 1 0 0 0 1 0 0 1 1 1 0 1 1 1 0 1 0 0 1 1 1 0 1 0 0 0 1 1 0 1 1 1 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 1 1 1 1 0 1 1 0 0 1 1 1 1 0 0 1 0 1 0 1 1 1 0 1 0 1 1 1 0 1 0 1 0 0 1 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0 1 1 0 1 0 1 1 0 0 1 0 0 0 1 0 1 1 0 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 1 0 &gt;&gt; Eventually I realized it needed to handle varying sizes of QR codes and handle reading until the prompt.">
+<meta itemprop="datePublished" content="2020-06-09T01:16:06-04:00" />
+<meta itemprop="dateModified" content="2020-06-09T01:16:06-04:00" />
+<meta itemprop="wordCount" content="1112">
+
+
+
+<meta itemprop="keywords" content="misc," /><meta property="og:title" content="Defenit: QR Generator" />
+<meta property="og:description" content="When you first connect to the server, it asks you for a name, and then starts spitting out ones and zeros in a grid format, and gives you a prompt &gt;&gt; but times out pretty quickly. I decided to take a chance and assume they wanted the QR code output. Here&rsquo;s what the service spit out, after the name prompt and some comments about levels:
+&lt; QR &gt; 1 1 1 1 1 1 1 0 1 0 1 0 1 0 0 0 0 1 0 0 1 0 1 1 1 1 1 1 1 1 0 0 0 0 0 1 0 1 0 0 1 1 0 0 0 1 0 0 0 1 0 1 0 0 0 0 0 1 1 0 1 1 1 0 1 0 0 1 1 1 1 1 0 1 0 0 0 1 0 0 1 0 1 1 1 0 1 1 0 1 1 1 0 1 0 0 0 1 1 1 0 1 0 0 0 0 1 1 0 1 0 1 1 1 0 1 1 0 1 1 1 0 1 0 1 0 0 0 0 1 0 0 0 1 1 1 0 0 1 0 1 1 1 0 1 1 0 0 0 0 0 1 0 1 0 0 1 0 1 0 1 0 0 0 0 0 0 1 0 0 0 0 0 1 1 1 1 1 1 1 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 0 1 1 0 1 1 0 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 1 0 0 0 0 1 1 1 0 1 1 0 1 0 0 1 0 1 1 0 0 1 1 1 1 0 1 0 0 0 1 0 1 0 0 0 1 1 0 1 1 0 0 1 1 0 1 1 1 0 0 0 1 1 1 0 0 0 1 0 0 1 0 1 1 0 1 0 1 0 1 1 0 0 1 0 0 1 1 0 0 0 0 1 1 0 1 0 0 1 0 1 1 0 0 0 0 1 0 1 1 0 0 0 0 1 0 1 1 0 1 0 0 0 0 1 1 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0 0 1 1 1 0 0 1 0 1 1 1 1 0 0 1 0 1 1 1 1 0 0 1 0 1 1 1 1 1 1 0 0 1 1 0 1 1 1 0 0 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0 1 0 1 1 1 0 0 0 1 0 1 0 0 1 1 1 0 0 1 0 1 1 1 0 0 0 1 0 1 1 0 1 0 0 0 1 1 1 1 0 1 1 1 0 1 1 1 1 0 0 1 0 1 0 1 0 1 0 0 0 1 1 0 0 0 1 0 1 1 1 1 0 0 1 0 1 0 1 1 1 1 1 1 0 0 1 0 0 0 1 1 0 0 1 0 0 1 1 0 1 0 1 0 0 1 0 0 0 0 0 1 0 0 1 1 0 0 1 0 0 0 1 0 1 1 1 0 1 1 0 0 1 1 1 0 1 1 0 1 1 1 0 0 1 0 1 1 1 1 0 0 1 0 1 0 0 1 0 1 0 1 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 0 1 1 1 1 0 1 0 1 0 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 0 0 0 1 1 0 1 0 1 1 0 1 0 1 0 1 1 0 1 0 0 0 0 0 1 0 1 1 1 1 0 1 1 1 1 1 0 0 1 0 0 0 1 0 0 1 1 1 0 1 1 1 0 1 0 0 1 1 1 0 1 0 0 0 1 1 0 1 1 1 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 1 1 1 1 0 1 1 0 0 1 1 1 1 0 0 1 0 1 0 1 1 1 0 1 0 1 1 1 0 1 0 1 0 0 1 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0 1 1 0 1 0 1 1 0 0 1 0 0 0 1 0 1 1 0 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 1 0 &gt;&gt; Eventually I realized it needed to handle varying sizes of QR codes and handle reading until the prompt." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://freeeve.github.io/ctf-writeups/posts/2020/defenit/qr-generator/" />
+<meta property="article:published_time" content="2020-06-09T01:16:06-04:00" />
+<meta property="article:modified_time" content="2020-06-09T01:16:06-04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Defenit: QR Generator"/>
+<meta name="twitter:description" content="When you first connect to the server, it asks you for a name, and then starts spitting out ones and zeros in a grid format, and gives you a prompt &gt;&gt; but times out pretty quickly. I decided to take a chance and assume they wanted the QR code output. Here&rsquo;s what the service spit out, after the name prompt and some comments about levels:
+&lt; QR &gt; 1 1 1 1 1 1 1 0 1 0 1 0 1 0 0 0 0 1 0 0 1 0 1 1 1 1 1 1 1 1 0 0 0 0 0 1 0 1 0 0 1 1 0 0 0 1 0 0 0 1 0 1 0 0 0 0 0 1 1 0 1 1 1 0 1 0 0 1 1 1 1 1 0 1 0 0 0 1 0 0 1 0 1 1 1 0 1 1 0 1 1 1 0 1 0 0 0 1 1 1 0 1 0 0 0 0 1 1 0 1 0 1 1 1 0 1 1 0 1 1 1 0 1 0 1 0 0 0 0 1 0 0 0 1 1 1 0 0 1 0 1 1 1 0 1 1 0 0 0 0 0 1 0 1 0 0 1 0 1 0 1 0 0 0 0 0 0 1 0 0 0 0 0 1 1 1 1 1 1 1 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 0 1 1 0 1 1 0 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 1 0 0 0 0 1 1 1 0 1 1 0 1 0 0 1 0 1 1 0 0 1 1 1 1 0 1 0 0 0 1 0 1 0 0 0 1 1 0 1 1 0 0 1 1 0 1 1 1 0 0 0 1 1 1 0 0 0 1 0 0 1 0 1 1 0 1 0 1 0 1 1 0 0 1 0 0 1 1 0 0 0 0 1 1 0 1 0 0 1 0 1 1 0 0 0 0 1 0 1 1 0 0 0 0 1 0 1 1 0 1 0 0 0 0 1 1 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0 0 1 1 1 0 0 1 0 1 1 1 1 0 0 1 0 1 1 1 1 0 0 1 0 1 1 1 1 1 1 0 0 1 1 0 1 1 1 0 0 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0 1 0 1 1 1 0 0 0 1 0 1 0 0 1 1 1 0 0 1 0 1 1 1 0 0 0 1 0 1 1 0 1 0 0 0 1 1 1 1 0 1 1 1 0 1 1 1 1 0 0 1 0 1 0 1 0 1 0 0 0 1 1 0 0 0 1 0 1 1 1 1 0 0 1 0 1 0 1 1 1 1 1 1 0 0 1 0 0 0 1 1 0 0 1 0 0 1 1 0 1 0 1 0 0 1 0 0 0 0 0 1 0 0 1 1 0 0 1 0 0 0 1 0 1 1 1 0 1 1 0 0 1 1 1 0 1 1 0 1 1 1 0 0 1 0 1 1 1 1 0 0 1 0 1 0 0 1 0 1 0 1 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 0 1 1 1 1 0 1 0 1 0 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 0 0 0 1 1 0 1 0 1 1 0 1 0 1 0 1 1 0 1 0 0 0 0 0 1 0 1 1 1 1 0 1 1 1 1 1 0 0 1 0 0 0 1 0 0 1 1 1 0 1 1 1 0 1 0 0 1 1 1 0 1 0 0 0 1 1 0 1 1 1 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 1 1 1 1 0 1 1 0 0 1 1 1 1 0 0 1 0 1 0 1 1 1 0 1 0 1 1 1 0 1 0 1 0 0 1 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0 1 1 0 1 0 1 1 0 0 1 0 0 0 1 0 1 1 0 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 1 0 &gt;&gt; Eventually I realized it needed to handle varying sizes of QR codes and handle reading until the prompt."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/ctf-writeups/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/ctf-writeups/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/ctf-writeups/favicon-16x16.png">
+	<link rel="manifest" href="/ctf-writeups/site.webmanifest">
+	<link rel="mask-icon" href="/ctf-writeups/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/ctf-writeups/favicon.ico">
+
+	<title>Defenit: QR Generator</title>
+	<link rel="stylesheet" href="https://freeeve.github.io/ctf-writeups/css/style.min.f57f8cc79f5c7990ed99ff01d1db4281a8ae82a45be9acef58b472dabd5acc6c.css" integrity="sha256-9X+Mx59ceZDtmf8B0dtCgaiugqRb6azvWLRy2r1azGw=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://freeeve.github.io/ctf-writeups/">Eve&#39;s CTF Writeups</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://freeeve.github.io/ctf-writeups/posts/">Posts</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/wefreema" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://github.com/freeeve" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://freeeve.github.io/ctf-writeups/posts/">Posts</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>2020-06-09</span></div>
+				<h1>Defenit: QR Generator</h1>
+			</header>
+			<div class="content">
+				<p>When you first connect to the server, it asks you for a name,
+and then starts spitting out ones and zeros in a grid format, and
+gives you a prompt <code>&gt;&gt;</code> but times out pretty quickly. I decided to
+take a chance and assume they wanted the QR code output. Here&rsquo;s
+what the service spit out, after the name prompt and some comments about levels:</p>
+<pre><code>&lt; QR &gt;
+1 1 1 1 1 1 1 0 1 0 1 0 1 0 0 0 0 1 0 0 1 0 1 1 1 1 1 1 1
+1 0 0 0 0 0 1 0 1 0 0 1 1 0 0 0 1 0 0 0 1 0 1 0 0 0 0 0 1
+1 0 1 1 1 0 1 0 0 1 1 1 1 1 0 1 0 0 0 1 0 0 1 0 1 1 1 0 1
+1 0 1 1 1 0 1 0 0 0 1 1 1 0 1 0 0 0 0 1 1 0 1 0 1 1 1 0 1
+1 0 1 1 1 0 1 0 1 0 0 0 0 1 0 0 0 1 1 1 0 0 1 0 1 1 1 0 1
+1 0 0 0 0 0 1 0 1 0 0 1 0 1 0 1 0 0 0 0 0 0 1 0 0 0 0 0 1
+1 1 1 1 1 1 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 1 1 1 1 1 1
+0 0 0 0 0 0 0 0 0 0 1 0 1 1 0 1 1 0 1 0 0 0 0 0 0 0 0 0 0
+1 1 1 1 0 1 1 0 0 0 0 1 1 1 0 1 1 0 1 0 0 1 0 1 1 0 0 1 1
+1 1 0 1 0 0 0 1 0 1 0 0 0 1 1 0 1 1 0 0 1 1 0 1 1 1 0 0 0
+1 1 1 0 0 0 1 0 0 1 0 1 1 0 1 0 1 0 1 1 0 0 1 0 0 1 1 0 0
+0 0 1 1 0 1 0 0 1 0 1 1 0 0 0 0 1 0 1 1 0 0 0 0 1 0 1 1 0
+1 0 0 0 0 1 1 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0 1 0 1 1 0 1
+0 0 0 1 1 1 0 0 1 0 1 1 1 1 0 0 1 0 1 1 1 1 0 0 1 0 1 1 1
+1 1 1 0 0 1 1 0 1 1 1 0 0 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0
+1 0 1 1 1 0 0 0 1 0 1 0 0 1 1 1 0 0 1 0 1 1 1 0 0 0 1 0 1
+1 0 1 0 0 0 1 1 1 1 0 1 1 1 0 1 1 1 1 0 0 1 0 1 0 1 0 1 0
+0 0 1 1 0 0 0 1 0 1 1 1 1 0 0 1 0 1 0 1 1 1 1 1 1 0 0 1 0
+0 0 1 1 0 0 1 0 0 1 1 0 1 0 1 0 0 1 0 0 0 0 0 1 0 0 1 1 0
+0 1 0 0 0 1 0 1 1 1 0 1 1 0 0 1 1 1 0 1 1 0 1 1 1 0 0 1 0
+1 1 1 1 0 0 1 0 1 0 0 1 0 1 0 1 0 0 1 1 1 1 1 1 1 1 1 1 1
+0 0 0 0 0 0 0 0 0 1 0 1 1 1 1 0 1 0 1 0 1 0 0 0 1 1 1 1 1
+1 1 1 1 1 1 1 0 0 0 1 0 0 0 1 1 0 1 0 1 1 0 1 0 1 0 1 1 0
+1 0 0 0 0 0 1 0 1 1 1 1 0 1 1 1 1 1 0 0 1 0 0 0 1 0 0 1 1
+1 0 1 1 1 0 1 0 0 1 1 1 0 1 0 0 0 1 1 0 1 1 1 1 1 1 0 0 1
+1 0 1 1 1 0 1 0 1 1 0 1 1 1 1 1 0 1 1 0 0 1 1 1 1 0 0 1 0
+1 0 1 1 1 0 1 0 1 1 1 0 1 0 1 0 0 1 1 0 0 0 0 0 0 0 0 0 0
+1 0 0 0 0 0 1 0 1 1 0 1 0 1 1 0 0 1 0 0 0 1 0 1 1 0 1 1 1
+1 1 1 1 1 1 1 0 1 1 1 1 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 1 0
+
+&gt;&gt; 
+</code></pre><p>Eventually I realized it needed to handle varying sizes of QR codes and
+handle reading until the prompt.</p>
+<p>Here is the my code:</p>
+<div class="highlight"><pre class="chroma"><code class="language-qr.go" data-lang="qr.go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;image&#34;</span>
+    <span class="s">&#34;image/color&#34;</span>
+    <span class="s">&#34;log&#34;</span>
+    <span class="s">&#34;net&#34;</span>
+    <span class="s">&#34;strings&#34;</span>
+
+    <span class="s">&#34;github.com/makiuchi-d/gozxing&#34;</span>
+    <span class="s">&#34;github.com/makiuchi-d/gozxing/qrcode&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">con</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="s">&#34;qr-generator.ctf.defenit.kr:9000&#34;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">defer</span> <span class="nx">con</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+    <span class="nx">qrmark</span> <span class="o">:=</span> <span class="s">&#34;&lt; QR &gt;&#34;</span>
+    <span class="nx">buf</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">1024</span><span class="o">*</span><span class="mi">16</span><span class="p">)</span>
+    <span class="nx">nBytes</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">con</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">buf</span><span class="p">)</span>
+    <span class="nx">nBytes</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">con</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">buf</span><span class="p">)</span>
+    <span class="nx">nBytes</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">con</span><span class="p">.</span><span class="nf">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;E\n&#34;</span><span class="p">))</span>
+    <span class="nx">codestr</span> <span class="o">:=</span> <span class="s">&#34;&#34;</span>
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="nx">nBytes</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">con</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">buf</span><span class="p">)</span>
+        <span class="nx">codestr</span> <span class="p">=</span> <span class="nx">codestr</span> <span class="o">+</span> <span class="nb">string</span><span class="p">(</span><span class="nx">buf</span><span class="p">[:</span><span class="nx">nBytes</span><span class="p">])</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">codestr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Index</span><span class="p">(</span><span class="nx">codestr</span><span class="p">,</span> <span class="s">&#34;Defenit{&#34;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">{</span>
+            <span class="k">break</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Index</span><span class="p">(</span><span class="nx">codestr</span><span class="p">,</span> <span class="nx">qrmark</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Index</span><span class="p">(</span><span class="nx">codestr</span><span class="p">,</span> <span class="s">&#34;&gt;&gt;&#34;</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">0</span> <span class="p">{</span>
+            <span class="k">continue</span>
+        <span class="p">}</span>
+        <span class="nx">codestr</span> <span class="p">=</span> <span class="nx">codestr</span><span class="p">[</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Index</span><span class="p">(</span><span class="nx">codestr</span><span class="p">,</span> <span class="nx">qrmark</span><span class="p">):]</span>
+
+        <span class="nx">lines</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Split</span><span class="p">(</span><span class="nx">codestr</span><span class="p">,</span> <span class="s">&#34;\n&#34;</span><span class="p">)</span>
+        <span class="nx">width</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Split</span><span class="p">(</span><span class="nx">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#34; &#34;</span><span class="p">))</span>
+        <span class="nx">img</span> <span class="o">:=</span> <span class="nx">image</span><span class="p">.</span><span class="nf">NewRGBA</span><span class="p">(</span><span class="nx">image</span><span class="p">.</span><span class="nx">Rectangle</span><span class="p">{</span><span class="nx">image</span><span class="p">.</span><span class="nx">Point</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span> <span class="nx">image</span><span class="p">.</span><span class="nx">Point</span><span class="p">{</span><span class="nx">width</span><span class="p">,</span> <span class="nx">width</span><span class="p">}})</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;qr code width:&#34;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+        <span class="k">for</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">line</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="p">{</span>
+            <span class="nx">arr</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Split</span><span class="p">(</span><span class="nx">line</span><span class="p">,</span> <span class="s">&#34; &#34;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="o">==</span> <span class="nx">width</span> <span class="p">{</span>
+                <span class="k">for</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">val</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">arr</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="nx">val</span> <span class="o">==</span> <span class="s">&#34;1&#34;</span> <span class="p">{</span>
+                        <span class="nx">img</span><span class="p">.</span><span class="nf">Set</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">color</span><span class="p">.</span><span class="nx">Black</span><span class="p">)</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">break</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="nx">bmp</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">gozxing</span><span class="p">.</span><span class="nf">NewBinaryBitmapFromImage</span><span class="p">(</span><span class="nx">img</span><span class="p">)</span>
+        <span class="nx">qrReader</span> <span class="o">:=</span> <span class="nx">qrcode</span><span class="p">.</span><span class="nf">NewQRCodeReader</span><span class="p">()</span>
+        <span class="nx">text</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">qrReader</span><span class="p">.</span><span class="nf">Decode</span><span class="p">(</span><span class="nx">bmp</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+            <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;qrcode value:&#34;</span><span class="p">,</span> <span class="nx">text</span><span class="p">)</span>
+        <span class="nx">con</span><span class="p">.</span><span class="nf">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%s\n&#34;</span><span class="p">,</span> <span class="nx">text</span><span class="p">)))</span>
+        <span class="nx">codestr</span> <span class="p">=</span> <span class="s">&#34;&#34;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://freeeve.github.io/ctf-writeups/tags/misc">misc</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1112 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-06-09</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://freeeve.github.io/ctf-writeups/posts/2020/pwn2win/a-payload-to-rule-them-all/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>pwn2win: A Payload To Rule Them All</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://freeeve.github.io/ctf-writeups/">Eve Freeman</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://freeeve.github.io/ctf-writeups/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://freeeve.github.io/ctf-writeups/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

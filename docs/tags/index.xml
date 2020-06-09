@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 08 Jun 2020 23:25:58 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 08 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://freeeve.github.io/ctf-writeups/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>web</title>
       <link>https://freeeve.github.io/ctf-writeups/tags/web/</link>
-      <pubDate>Mon, 08 Jun 2020 23:25:58 -0400</pubDate>
+      <pubDate>Mon, 08 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://freeeve.github.io/ctf-writeups/tags/web/</guid>
       <description></description>

@@ -52,7 +52,7 @@ what the service spit out, after the name prompt and some comments about levels:
 Eventually I realized it needed to handle varying sizes of QR codes and
 handle reading until the prompt. 
 
-Here is the my code:
+Here is my code:
 
 ```qr.go
 package main

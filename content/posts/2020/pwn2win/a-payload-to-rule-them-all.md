@@ -5,7 +5,7 @@ tags: [web]
 draft: false
 ---
 This one gives us a post endpoint for a payload that needs to exploit xxe, xss,
-and sqli (sql injection), as well as the code for the server.
+and sqli (sql injection), as well as the code for the server:
 
 ```server.js
 const express = require("express")

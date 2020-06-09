@@ -1,5 +1,5 @@
 ---
-title: "a-payload-to-rule-them-all"
+title: "pwn2win: A Payload To Rule Them All"
 date: 2020-06-08
 tags: [web]
 draft: false

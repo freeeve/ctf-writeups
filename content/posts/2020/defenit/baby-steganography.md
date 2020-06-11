@@ -8,7 +8,7 @@ tags:
   - untagged
 ---
 They give you a file without an extension, and hint that the "sub bit" contains
-some hidden data. [problem file](/defenit/problem)
+some hidden data. [problem file](/ctf-writeups/defenit/problem)
 
 When I opened the file in hex fiend, I could see the header of
 `RIFF‡ı∏WAVEfmt`, indicating that it was a wav file. So I looked for a wav

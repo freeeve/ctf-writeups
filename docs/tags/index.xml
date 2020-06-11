@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 09 Jun 2020 01:16:06 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jun 2020 00:33:40 -0400</lastBuildDate>
     
 	<atom:link href="https://freeeve.github.io/ctf-writeups/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>untagged</title>
+      <link>https://freeeve.github.io/ctf-writeups/tags/untagged/</link>
+      <pubDate>Thu, 11 Jun 2020 00:33:40 -0400</pubDate>
+      
+      <guid>https://freeeve.github.io/ctf-writeups/tags/untagged/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>misc</title>

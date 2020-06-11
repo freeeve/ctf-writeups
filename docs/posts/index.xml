@@ -17,19 +17,17 @@
 			<guid>https://freeeve.github.io/ctf-writeups/posts/2020/defenit/baby-steganography/</guid>
 			<description>They give you a file without an extension, and hint that the &amp;ldquo;sub bit&amp;rdquo; contains some hidden data. problem file
 When I opened the file in hex fiend, I could see the header of RIFF‡ı∏WAVEfmt, indicating that it was a wav file. So I looked for a wav library, pulled out the samples, and tried to figure out where it might be hiding.
-There were two channels, left and right, and 16 bits for channels.</description>
+There were two channels, left and right, and 16 bits for samples.</description>
 			<content type="html"><![CDATA[<p>They give you a file without an extension, and hint that the &ldquo;sub bit&rdquo; contains
 some hidden data. <a href="/ctf-writeups/defenit/problem">problem file</a></p>
 <p>When I opened the file in hex fiend, I could see the header of
 <code>RIFF‡ı∏WAVEfmt</code>, indicating that it was a wav file. So I looked for a wav
 library, pulled out the samples, and tried to figure out where it might
 be hiding.</p>
-<p>There were two channels, left and right, and 16 bits for channels. I tried
+<p>There were two channels, left and right, and 16 bits for samples. I tried
 looking in the LSB of each channel, both channels, putting the bits together
 into bytes, but didn&rsquo;t find anything interesting. It was my teammate that tried the LSB of
-each byte, which ended up being correct, even though I think it should affect
-the audio more than if you just did the LSB or lowest two bits or
-something.</p>
+each byte, which ended up being correct.</p>
 <p>Here&rsquo;s the final code, with some comments:</p>
 <div class="highlight"><pre class="chroma"><code class="language-baby-stega.go" data-lang="baby-stega.go"><span class="kn">package</span> <span class="nx">main</span>
 

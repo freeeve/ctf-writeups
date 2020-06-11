@@ -14,12 +14,10 @@ When I opened the file in hex fiend, I could see the header of
  library, pulled out the samples, and tried to figure out where it might
 be hiding.
 
-There were two channels, left and right, and 16 bits for channels. I tried
+There were two channels, left and right, and 16 bits for samples. I tried
 looking in the LSB of each channel, both channels, putting the bits together
 into bytes, but didn't find anything interesting. It was my teammate that tried the LSB of
-each byte, which ended up being correct, even though I think it should affect 
-the audio more than if you just did the LSB or lowest two bits or
-something.
+each byte, which ended up being correct.
 
 Here's the final code, with some comments:
 

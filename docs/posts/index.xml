@@ -51,9 +51,7 @@ something.</p>
 	<span class="kd">var</span> <span class="nx">bitPosition</span> <span class="kt">int</span>
 	<span class="k">for</span> <span class="p">{</span>
 		<span class="c1">// this code was originally broken up like this to read samples
-</span><span class="c1"></span>		<span class="c1">// and get the left and right LSB, but it turns out
-</span><span class="c1"></span>		<span class="c1">// they just used the LSB of each byte, so I could just read the
-</span><span class="c1"></span>    <span class="c1">// bytes into a buffer
+</span><span class="c1"></span>		<span class="c1">// and get the left and right sample LSB
 </span><span class="c1"></span>		<span class="nx">n</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">reader</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span>
 		<span class="k">if</span> <span class="nx">err</span> <span class="o">==</span> <span class="nx">io</span><span class="p">.</span><span class="nx">EOF</span> <span class="p">{</span>
 			<span class="k">break</span>

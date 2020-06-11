@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://freeeve.github.io/ctf-writeups/tags/audio/</loc>
+    <lastmod>2020-06-11T00:33:40-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://freeeve.github.io/ctf-writeups/posts/2020/defenit/baby-steganography/</loc>
     <lastmod>2020-06-11T00:33:40-04:00</lastmod>
   </url>
@@ -18,12 +23,12 @@
   </url>
   
   <url>
-    <loc>https://freeeve.github.io/ctf-writeups/tags/</loc>
+    <loc>https://freeeve.github.io/ctf-writeups/tags/steganography/</loc>
     <lastmod>2020-06-11T00:33:40-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://freeeve.github.io/ctf-writeups/tags/untagged/</loc>
+    <loc>https://freeeve.github.io/ctf-writeups/tags/</loc>
     <lastmod>2020-06-11T00:33:40-04:00</lastmod>
   </url>
   

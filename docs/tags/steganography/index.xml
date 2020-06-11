@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>steganography on Eve&#39;s CTF Writeups</title>
+    <link>https://freeeve.github.io/ctf-writeups/tags/steganography/</link>
+    <description>Recent content in steganography on Eve&#39;s CTF Writeups</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Thu, 11 Jun 2020 00:33:40 -0400</lastBuildDate>
+    
+	<atom:link href="https://freeeve.github.io/ctf-writeups/tags/steganography/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Defenit: Baby Steganography</title>
+      <link>https://freeeve.github.io/ctf-writeups/posts/2020/defenit/baby-steganography/</link>
+      <pubDate>Thu, 11 Jun 2020 00:33:40 -0400</pubDate>
+      
+      <guid>https://freeeve.github.io/ctf-writeups/posts/2020/defenit/baby-steganography/</guid>
+      <description>They give you a file without an extension, and hint that the &amp;ldquo;sub bit&amp;rdquo; contains some hidden data. problem file
+When I opened the file in hex fiend, I could see the header of RIFF‡ı∏WAVEfmt, indicating that it was a wav file. So I looked for a wav library, pulled out the samples, and tried to figure out where it might be hiding.
+There were two channels, left and right, and 16 bits for channels.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -4,8 +4,7 @@ date: 2020-06-11T00:33:40-04:00
 draft: false
 toc: false
 images:
-tags: 
-  - untagged
+tags: [steganography, audio]
 ---
 They give you a file without an extension, and hint that the "sub bit" contains
 some hidden data. [problem file](/ctf-writeups/defenit/problem)
@@ -45,9 +44,7 @@ func main() {
 	var bitPosition int
 	for {
 		// this code was originally broken up like this to read samples
-		// and get the left and right LSB, but it turns out
-		// they just used the LSB of each byte, so I could just read the
-    // bytes into a buffer
+		// and get the left and right sample LSB
 		n, err := reader.Read(arr)
 		if err == io.EOF {
 			break

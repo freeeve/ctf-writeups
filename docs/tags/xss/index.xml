@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>xss on Eve&#39;s CTF Writeups</title>
+    <link>https://freeeve.github.io/ctf-writeups/tags/xss/</link>
+    <description>Recent content in xss on Eve&#39;s CTF Writeups</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Mon, 08 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://freeeve.github.io/ctf-writeups/tags/xss/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>pwn2win: A Payload To Rule Them All</title>
+      <link>https://freeeve.github.io/ctf-writeups/posts/2020/pwn2win/a-payload-to-rule-them-all/</link>
+      <pubDate>Mon, 08 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeeve.github.io/ctf-writeups/posts/2020/pwn2win/a-payload-to-rule-them-all/</guid>
+      <description>This one gives us a post endpoint for a payload that needs to exploit xxe, xss, and sqli (sql injection), as well as the code for the server:
+const express = require(&amp;#34;express&amp;#34;) const app = express() const bodyParser = require(&amp;#34;body-parser&amp;#34;) const port = 31337 const { execFile } = require(&amp;#34;child_process&amp;#34;) const fs = require(&amp;#34;fs&amp;#34;) const rateLimit = require(&amp;#34;express-rate-limit&amp;#34;); app.use(express.static(&amp;#34;static&amp;#34;)) app.use(bodyParser.urlencoded({ extended: true })) const limiter = rateLimit({ windowMs: 10 * 60 * 1000, max: 50 }); // 15 minutes // limit each IP to 100 requests per windowMs app.</description>
+    </item>
+    
+  </channel>
+</rss>

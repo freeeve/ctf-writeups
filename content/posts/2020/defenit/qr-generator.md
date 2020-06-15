@@ -4,8 +4,7 @@ date: 2020-06-09T01:16:06-04:00
 draft: false
 toc: false
 images:
-tags: 
-  - misc
+tags: [misc]
 ---
 
 When you first connect to the server, it asks you for a name, 

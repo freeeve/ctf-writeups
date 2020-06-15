@@ -7,10 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 11 Jun 2020 00:33:40 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 14 Jun 2020 23:36:38 -0400</lastBuildDate>
     
 	<atom:link href="https://freeeve.github.io/ctf-writeups/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>wectf: Light Sequel</title>
+      <link>https://freeeve.github.io/ctf-writeups/posts/2020/wectf/light-sequel/</link>
+      <pubDate>Sun, 14 Jun 2020 23:36:38 -0400</pubDate>
+      
+      <guid>https://freeeve.github.io/ctf-writeups/posts/2020/wectf/light-sequel/</guid>
+      <description>This was a nice opportunity to see grpc in action.
+They provided the code for the server, as well as the protobuf-based service.
+full code here
+Looking at the code, I saw a possible sql injection vulnerability here (in the where clause):
+func (s *srvServer) GetLoginHistory(ctx context.Context, _ *pb.SrvRequest) (*pb.SrvReply, error) { md, _ := metadata.FromIncomingContext(ctx) if len(md[&amp;#34;user_token&amp;#34;]) == 0 { // no user token provided by upstream  return &amp;amp;pb.</description>
+    </item>
     
     <item>
       <title>Defenit: Baby Steganography</title>

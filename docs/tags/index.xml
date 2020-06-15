@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 11 Jun 2020 00:33:40 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 14 Jun 2020 23:36:38 -0400</lastBuildDate>
     
 	<atom:link href="https://freeeve.github.io/ctf-writeups/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>golang</title>
+      <link>https://freeeve.github.io/ctf-writeups/tags/golang/</link>
+      <pubDate>Sun, 14 Jun 2020 23:36:38 -0400</pubDate>
+      
+      <guid>https://freeeve.github.io/ctf-writeups/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sqli</title>
+      <link>https://freeeve.github.io/ctf-writeups/tags/sqli/</link>
+      <pubDate>Sun, 14 Jun 2020 23:36:38 -0400</pubDate>
+      
+      <guid>https://freeeve.github.io/ctf-writeups/tags/sqli/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>audio</title>
@@ -45,6 +63,24 @@
       <pubDate>Mon, 08 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://freeeve.github.io/ctf-writeups/tags/web/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>xss</title>
+      <link>https://freeeve.github.io/ctf-writeups/tags/xss/</link>
+      <pubDate>Mon, 08 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeeve.github.io/ctf-writeups/tags/xss/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>xxe</title>
+      <link>https://freeeve.github.io/ctf-writeups/tags/xxe/</link>
+      <pubDate>Mon, 08 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeeve.github.io/ctf-writeups/tags/xxe/</guid>
       <description></description>
     </item>
     

@@ -1,7 +1,7 @@
 ---
 title: "pwn2win: A Payload To Rule Them All"
 date: 2020-06-08
-tags: [web]
+tags: [web, xss, sqli, xxe]
 draft: false
 ---
 This one gives us a post endpoint for a payload that needs to exploit xxe, xss,
